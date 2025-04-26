@@ -57,7 +57,7 @@ def _parser(url, file_name) -> tuple:  # return (status, path/massage)
         return 'error', 'nothing was handed over'
 
     # Очистка ссылки от лишних пробелов и добавление http://
-    url = url.strip()
+    url = url.strip().strip('/')
     if not url.startswith('http'):
         url = 'http://' + url
 
@@ -116,9 +116,25 @@ def parser(url: str = '', file_name: str = 'default.txt') -> tuple:
         """
     return _parser(url, file_name)
 
-# Все сохраняется по пути text/[НАЗВАНИЕ_САЙТА]/file.txt
+
+# Все сохраняется по пути texts/[НАЗВАНИЕ_САЙТА]/file.txt
 if __name__ == '__main__':
-    url = 'https://ru.wikipedia.org/wiki/Буква'
-    print(*parser(
-        url),
-          sep=': ')
+    # Пример с ожидаемой успешной работой функции
+    address = 'https://ru.wikipedia.org/wiki/Буква'
+    print(parser(address))
+    # output: ('done', 'texts\\Буква\\default.txt')
+
+    # # Пример с передачей желаемого имени файла
+    # address = 'https://cyberleninka.ru/article/n/ugolovnyy-kodeks-finlyandii-1889-g-kak-zakonodatelnyy-istochnik-evropeyskoy-integratsii/'
+    # print(parser(address, 'file_1'))
+    # # output: ('done', 'texts\\ugolovnyy-kodeks-finlyandii-1889-g-kak-zakonodatelnyy-istochnik-evropeyskoy-integratsii\\file_1.txt')
+
+    # # Пример ошибки_1 (если сайт не wikipedia и не cyberleninka)
+    # address = 'https://NONAME_SITE'
+    # print(parser(address))
+    # # output: ('error', 'Wrong site. I was expecting "wikipedia" or "cyberleninka.ru"')
+
+    # # Пример ошибки_2 (нет доступа к сайту)
+    # address = 'https://ru.wikipedia.org/wik404/Буква'
+    # print(parser(address))
+    # # output: ('error', 'status_code = 404')
