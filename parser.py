@@ -117,7 +117,8 @@ def parser(url: str = '', file_name: str = 'default.txt') -> tuple:
     return _parser(url, file_name)
 
 
-# Все сохраняется по пути texts/[НАЗВАНИЕ_САЙТА]/file.txt
+# Все сохраняется по пути texts/[НАЗВАНИЕ_САЙТА]/[НАЗВАНИЕ_ФАЙЛА].txt
+# [..] - это значит, что запись зависит от передаваемых параметров в функцию  
 if __name__ == '__main__':
     # Пример с ожидаемой успешной работой функции
     address = 'https://ru.wikipedia.org/wiki/Буква'
