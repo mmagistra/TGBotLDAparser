@@ -65,7 +65,7 @@ def _extract_topics_from_file(filename, num_topics=5, num_words=5):
     vectorizer = TfidfVectorizer()
     X = vectorizer.fit_transform([processed_text])
 
-    # Обучение модели LDA
+    # Обучение модели LDA!
     lda_model = LatentDirichletAllocation(n_components=num_topics, random_state=42)
     lda_model.fit(X)
 
@@ -81,8 +81,8 @@ def _extract_topics_from_file(filename, num_topics=5, num_words=5):
 
 # Пример использования
 if __name__ == "__main__":
-    url = 'https://ru.wikipedia.org/wiki/Python'
+    url = 'https://ru.wikipedia.org/wiki/Естествознание'
     topics = extract_unique_topics_from_url(url, num_topics=5, num_words=5)
-
+    print(topics)
     for i, topic in enumerate(topics):
         print(f"Тема {i + 1}: {', '.join(topic)}")

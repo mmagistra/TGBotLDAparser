@@ -345,3 +345,7 @@ local_debug/*
 
 # texts folder
 texts/*
+
+# test files
+
+test*
