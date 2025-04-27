@@ -342,3 +342,6 @@ cython_debug/
 
 # local
 local_debug/*
+
+# texts folder
+texts/*
