@@ -347,5 +347,5 @@ local_debug/*
 texts/*
 
 # test files
-
+config.py
 test*

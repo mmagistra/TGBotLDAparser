@@ -37,7 +37,7 @@ class vector_manager:
         similar_words = [self.word_list[i] for i in indices[0]]
         return similar_words, distances[0]
 
-    def compare_with_distance_threshold(self, words, threshold=20, vector_db = None):
+    def compare_with_distance_threshold(self, words, threshold=20):
         """
         Сравнивает массив слов с векторной базой данных.
         Возвращает 1, если хотя бы одно слово имеет дистанцию меньше порога, иначе 0.
@@ -46,8 +46,8 @@ class vector_manager:
         :param threshold: пороговое значение для дистанции.
         :return: 1 или 0
         """
-        if vector_db is not None:
-            self.vector_db = vector_db
+        if self.vector_db is None:
+            return 0
         index = faiss.IndexFlatL2(self.vector_db.shape[1])  # Индекс для L2 расстояния
         index.add(self.vector_db)  # Добавляем векторную базу данных
         for word in words:
