@@ -9,6 +9,7 @@ from url_to_text_parser import parser
 # Загрузка стоп-слов
 nltk.download('stopwords')
 stop_words = set(stopwords.words('russian'))
+print('это' in stop_words)
 
 
 def extract_unique_topics_from_url(url, num_topics=5, num_words=5):
